@@ -1,6 +1,13 @@
 # Brainstorming mockups (local only)
 .superpowers/
 
+# Dependencies and build output
+node_modules/
+dist/
+.next/
+out/
+*.tsbuildinfo
+
 # OS
 .DS_Store
 Thumbs.db

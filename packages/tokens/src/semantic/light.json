@@ -1,0 +1,29 @@
+{
+  "color": {
+    "$type": "color",
+    "bg": { "$value": "{palette.paper.50}" },
+    "surface": {
+      "default": { "$value": "{palette.paper.0}" },
+      "raised": { "$value": "{palette.paper.100}" }
+    },
+    "border": {
+      "default": { "$value": "{palette.paper.200}" },
+      "strong": { "$value": "{palette.paper.300}" }
+    },
+    "text": {
+      "default": { "$value": "{palette.graphite.950}" },
+      "muted": { "$value": "{palette.graphite.600}" }
+    },
+    "accent": {
+      "default": { "$value": "{palette.amber.700}" },
+      "fg": { "$value": "{palette.paper.0}" }
+    },
+    "success": { "$value": "{palette.green.700}" },
+    "focus": { "$value": "{color.accent.default}" },
+    "redline": { "$value": "{palette.red.600}" },
+    "mark": {
+      "primary": { "$value": "{color.text.default}" },
+      "secondary": { "$value": "{color.accent.default}" }
+    }
+  }
+}

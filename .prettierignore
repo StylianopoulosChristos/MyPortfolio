@@ -1,0 +1,10 @@
+index.html
+css/
+js/
+docs/superpowers/
+.superpowers/
+pnpm-lock.yaml
+**/dist/
+**/.next/
+**/out/
+**/next-env.d.ts
