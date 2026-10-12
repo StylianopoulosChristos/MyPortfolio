@@ -1,0 +1,11 @@
+.container {
+  max-inline-size: var(--layout-max-width);
+  margin-inline: auto;
+  padding-inline: var(--layout-page-padding);
+}
+
+@media (width >= 768px) {
+  .container {
+    padding-inline: var(--layout-page-padding-wide);
+  }
+}

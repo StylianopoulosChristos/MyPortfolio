@@ -1,0 +1,16 @@
+.page {
+  padding-block: var(--space-9);
+}
+
+.title {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+  letter-spacing: var(--font-tracking-h1);
+  font-weight: var(--font-weight-semibold);
+}
+
+.body {
+  margin: 0 0 var(--space-5);
+  color: var(--color-text-muted);
+}

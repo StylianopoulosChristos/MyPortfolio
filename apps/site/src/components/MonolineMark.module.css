@@ -1,0 +1,7 @@
+.c {
+  stroke: var(--color-mark-primary);
+}
+
+.s {
+  stroke: var(--color-mark-secondary);
+}
