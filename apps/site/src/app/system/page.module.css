@@ -1,0 +1,106 @@
+.intro {
+  padding-block: var(--space-9) var(--space-4);
+}
+
+.lead {
+  max-inline-size: 40rem;
+  margin: var(--space-4) 0 var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--font-line-height-body-lg);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The table scrolls inside its own box so the page never scrolls sideways. */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-block-end: 1px solid var(--color-border-default);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.table thead th {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.tokenName {
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-regular);
+}
+
+.table td {
+  font-family: var(--font-family-mono);
+}
+
+.swatch {
+  display: inline-block;
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
+  margin-inline-end: var(--space-2);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  vertical-align: middle;
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sample {
+  margin: 0 0 var(--space-1);
+  font-weight: var(--font-weight-semibold);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.bar {
+  block-size: var(--space-3);
+  background: var(--color-accent-default);
+}
+
+.radii {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.radius {
+  display: block;
+  inline-size: var(--space-8);
+  block-size: var(--space-8);
+  margin-block-end: var(--space-2);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-raised);
+}

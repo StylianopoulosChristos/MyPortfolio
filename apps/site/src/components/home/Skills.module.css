@@ -1,0 +1,23 @@
+.groups {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.items {
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-text-muted);
+}
+
+.minor {
+  margin: var(--space-6) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+@media (width >= 768px) {
+  .groups {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

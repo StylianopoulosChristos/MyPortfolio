@@ -1,0 +1,28 @@
+.intro {
+  margin: 0 0 var(--space-5);
+  color: var(--color-text-muted);
+}
+
+.links {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+}
+
+.label {
+  min-inline-size: 6rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--font-tracking-label);
+  text-transform: uppercase;
+}

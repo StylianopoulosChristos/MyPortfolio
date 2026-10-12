@@ -8,6 +8,10 @@ export const CASE_STUDY_DIR = join(process.cwd(), 'content', 'work');
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+// Static export rejects an empty generateStaticParams list, so /work/[slug]
+// emits this one param (which renders the 404) while nothing is published.
+export const EMPTY_SLUG = '_';
+
 export function listCaseStudySlugs(dir: string = CASE_STUDY_DIR): string[] {
   return readdirSync(dir)
     .filter((file) => file.endsWith('.mdx') && !file.startsWith('_'))

@@ -1,0 +1,18 @@
+.section {
+  padding-block: var(--space-8);
+  scroll-margin-block-start: var(--space-5);
+}
+
+.label {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+  line-height: var(--font-line-height-label);
+  letter-spacing: var(--font-tracking-label);
+  text-transform: uppercase;
+}
+
+.title {
+  margin-block-end: var(--space-6);
+}

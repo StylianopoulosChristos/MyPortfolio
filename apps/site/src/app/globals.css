@@ -14,6 +14,31 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--font-line-height-h1);
+  letter-spacing: var(--font-tracking-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--font-line-height-h2);
+  letter-spacing: var(--font-tracking-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--font-line-height-h3);
+  letter-spacing: var(--font-tracking-h3);
+}
+
 a {
   color: var(--color-accent-default);
 }

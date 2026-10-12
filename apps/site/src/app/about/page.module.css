@@ -1,0 +1,28 @@
+.intro {
+  padding-block: var(--space-9) var(--space-4);
+}
+
+.framing {
+  max-inline-size: 36rem;
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--font-line-height-body-lg);
+}
+
+.cv {
+  display: inline-block;
+  margin-block-start: var(--space-5);
+  font-weight: var(--font-weight-semibold);
+}
+
+.education {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.education p {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+}

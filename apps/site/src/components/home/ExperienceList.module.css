@@ -1,0 +1,44 @@
+.roles {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.role {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.period {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+  line-height: var(--font-line-height-h3);
+}
+
+.company {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+}
+
+.bullets {
+  margin: var(--space-3) 0 0;
+  padding-inline-start: var(--space-5);
+}
+
+.tags {
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+}
+
+@media (width >= 768px) {
+  .role {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-6);
+  }
+}
