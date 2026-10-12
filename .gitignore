@@ -1,0 +1,6 @@
+# Brainstorming mockups (local only)
+.superpowers/
+
+# OS
+.DS_Store
+Thumbs.db
