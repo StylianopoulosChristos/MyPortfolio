@@ -300,7 +300,7 @@ The site comes first: a working skeleton with every page, then real Figma tokens
 
 ## 9. Collaboration model & decision log
 
-- **Claude builds:** tooling, configuration, CI, pipelines, scaffolding (including the Phase 1 site skeleton, which Chris then reworks with his own components in Phase 3), and anything interviewers are unlikely to probe.
+- **Claude builds:** tooling, configuration, CI, pipelines, scaffolding (including the Phase 1 site skeleton, which Chris then reworks with their own components in Phase 3), and anything interviewers are unlikely to probe.
 - **Chris builds:** Figma work, token naming and structure, component code, page code, and case-study writing. Claude guides step by step and reviews.
 - **Decision log:** `docs/decisions/NNNN-short-title.md`, a few lines each, with headings **Context / Options considered / Decision / Why**. Add an entry for every non-obvious token or API decision. This is the raw material for case study #1 and for interview preparation.
 
