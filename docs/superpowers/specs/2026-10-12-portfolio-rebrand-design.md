@@ -20,7 +20,7 @@ Reposition Chris from **"Front-End Developer · WordPress, PHP & SQL"** to **"UI
 4. Three case studies are published, each with Problem / Key decisions / Result.
 5. All text/background token pairs meet **WCAG 2.2 AA** in both themes; this is enforced in CI. Storybook's axe add-on reports zero violations, and Lighthouse accessibility scores ≥ 95 on every page.
 6. Chris can explain every token-structure and component-API decision. The decision log (§9) records them.
-7. The new site is live by about week 11, and Chris is applying by about week 14.
+7. The new site is live by about week 12, and Chris is applying by about week 14.
 
 ### What was decided vs. assumed
 
@@ -235,6 +235,22 @@ packages/ui (CSS Modules read var(--…))  →  apps/site
 - Case studies are MDX files rendered through the fixed template (§3).
 - The `/system` page imports `tokens.ts`, so what it displays is always the real token values.
 
+#### Content model: add content later without touching layout code
+
+All content lives in `apps/site/content/`, separate from layout and components. Adding content means editing these files and nothing else:
+
+| File | Holds |
+|---|---|
+| `profile.ts` | Name, title, tagline, location line, availability, links (email, GitHub, LinkedIn), CV file path |
+| `experience.ts` | Typed list of roles: company, title, period, bullets, tags |
+| `skills.ts` | Skill groups in the §2 order |
+| `work/<slug>.mdx` | One case study per file. Its metadata (title, summary, role, timeline, tools, order, `published`) drives the cards and the page |
+| `work/_template.mdx` | A documented case-study template. It is never published |
+
+- Content files are typed with TypeScript, so a missing required field fails the build instead of shipping a broken page.
+- **Sections render only when they have content.** For example, the Work section and its nav link are hidden while there are no `published` case studies. No placeholder text ever ships.
+- The skeleton is seeded only with content we already have (from the CV and this spec): profile, experience (agency role omitted until its details arrive), skills.
+
 ### 6.5 Quality & CI
 
 - **Checks on every PR and on `main`:** `typecheck` → `lint` (ESLint + Prettier) → `test` (Vitest + Testing Library) → **contrast check** → build tokens → build ui → build Storybook → build site.
@@ -246,7 +262,7 @@ packages/ui (CSS Modules read var(--…))  →  apps/site
 
 ## 7. Migration from the current site
 
-1. **Phase 0 (on `main`, now):** edit the existing static `index.html`:
+1. **Phase 0 (on `main`, independent: any time inputs arrive):** edit the existing static `index.html`:
    - new title and meta description
    - new hero copy (title + tagline)
    - remove the placeholder Work section
@@ -255,8 +271,8 @@ packages/ui (CSS Modules read var(--…))  →  apps/site
    - re-order skills per §2
    - update the footer year
    - rewrite `README.md` to describe the actual project (it currently references a deleted workflow and placeholder usernames)
-2. **Phases 1–3 (on a `rebrand` branch):** build the monorepo alongside the old files. The old site stays live the whole time.
-3. **Launch (end of Phase 3):** delete the old `index.html`, `css/` and `js/`, merge `rebrand` into `main`, and switch Pages to the Actions deploy.
+2. **Phases 1–4 (on the `rebrand` branch):** build the monorepo alongside the old files. The old site stays live the whole time.
+3. **Launch (end of Phase 4):** delete the old `index.html`, `css/` and `js/`, merge `rebrand` into `main`, and switch Pages to the Actions deploy.
 
 ---
 
@@ -264,22 +280,27 @@ packages/ui (CSS Modules read var(--…))  →  apps/site
 
 | Phase | Weeks | Chris | Claude | Exit criteria |
 |---|---|---|---|---|
-| 0. Stop the bleeding | 0 | Provide LinkedIn URL + agency details | Apply §7 step 1 | Current site has no placeholders or broken links |
-| 1. Foundations | 1–3 | Figma file: variables (primitives, semantic dark/light, type, spacing, radius), Monoline vector; token naming | Monorepo, Style Dictionary, Storybook, CI skeleton, contrast script; review token naming | `pnpm build` produces `tokens.css` with both themes; contrast check passes |
-| 2. Component library | 4–8 | Build ~12 components per the definition of done | Guidance, code review, harder TS patterns | Storybook deployed publicly; all stories pass axe |
-| 3. Site v1 + launch | 9–11 | Build pages; write case study #2 (agency) | Site scaffolding, MDX setup, deploy switch | New site live; old files removed |
-| 4. Case studies | 12–14 | Write case studies #1 (flagship) and #3 | Edit and tighten copy | All three case studies live; start applying |
-| 5. Optional | 15+ | Expo app on shared tokens; npm publish; visual regression tests | Support | Scope decided at the time |
+The site comes first: a working skeleton with every page, then real Figma tokens, then components, then content.
+
+| Phase | Weeks | Chris | Claude | Exit criteria |
+|---|---|---|---|---|
+| 0. Stop the bleeding | Any time (independent) | Provide LinkedIn URL + agency details | Apply §7 step 1 | Current site has no placeholders or broken links |
+| 1. Site skeleton | 1–2 | Run it locally, review the structure, learn where things live | Monorepo; `tokens` seeded from §5 values (DTCG JSON → Style Dictionary → CSS + TS); contrast check; Next.js site with every route (§3), header/footer with Monoline mark, theme toggle, content model (§6.4); CI | `pnpm dev` serves every route in both themes; `pnpm build` produces the static export; contrast check and CI pass |
+| 2. Figma + tokens | 3–4 | Rebuild the seeded tokens as Figma variables; draw the Monoline vector; take over token naming. The Figma export replaces the seed files | Wire export → build; review naming | A Figma export rebuilds `tokens.css` with only intended diffs |
+| 3. Component library | 5–9 | Build ~12 components per the definition of done, and swap them into the site in place of skeleton markup | Storybook setup; guidance, code review, harder TS patterns | All stories pass axe; site pages use only `ui` components |
+| 4. Content + launch | 10–12 | Write About copy and case study #2 (agency) | Edit copy; deploy switch | New site live; old files removed |
+| 5. Case studies | 13–14 | Write case studies #1 (flagship) and #3 | Edit and tighten copy | All three case studies live; start applying |
+| 6. Optional | 15+ | Expo app on shared tokens; npm publish; visual regression tests | Support | Scope decided at the time |
 
 **Stall rule:** if a component goes past one working session, cut its scope rather than polish it.
 
-**Planning granularity:** each phase gets its own implementation plan, written when the phase starts. The first plan covers Phases 0 and 1.
+**Planning granularity:** each phase gets its own implementation plan, written when the phase starts. The first plan covers Phase 1 (site skeleton).
 
 ---
 
 ## 9. Collaboration model & decision log
 
-- **Claude builds:** tooling, configuration, CI, pipelines, scaffolding, and anything interviewers are unlikely to probe.
+- **Claude builds:** tooling, configuration, CI, pipelines, scaffolding (including the Phase 1 site skeleton, which Chris then reworks with his own components in Phase 3), and anything interviewers are unlikely to probe.
 - **Chris builds:** Figma work, token naming and structure, component code, page code, and case-study writing. Claude guides step by step and reviews.
 - **Decision log:** `docs/decisions/NNNN-short-title.md`, a few lines each, with headings **Context / Options considered / Decision / Why**. Add an entry for every non-obvious token or API decision. This is the raw material for case study #1 and for interview preparation.
 
@@ -301,5 +322,5 @@ packages/ui (CSS Modules read var(--…))  →  apps/site
 |---|---|
 | LinkedIn profile URL | Phase 0 |
 | Agency name, start date, 2–3 bullets about the role | Phase 0 |
-| Agency case study: number of client sites using the system; before/after estimates (build time, consistency, fewer fixes); permission to show client sites (otherwise anonymized) | Phase 3 |
-| Links to existing React / TS / RN repos | Phase 4 |
+| Agency case study: number of client sites using the system; before/after estimates (build time, consistency, fewer fixes); permission to show client sites (otherwise anonymized) | Phase 4 |
+| Links to existing React / TS / RN repos | Phase 5 |
