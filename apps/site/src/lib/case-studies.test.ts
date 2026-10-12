@@ -4,7 +4,12 @@ import { join } from 'node:path';
 import { evaluate } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import { describe, expect, it } from 'vitest';
-import { CASE_STUDY_DIR, listCaseStudySlugs, parseCaseStudyMeta } from './case-studies';
+import {
+  assertNotTemplate,
+  CASE_STUDY_DIR,
+  listCaseStudySlugs,
+  parseCaseStudyMeta,
+} from './case-studies';
 
 const valid = {
   title: 'A study',
@@ -44,6 +49,38 @@ describe('parseCaseStudyMeta', () => {
   it('rejects tools that are not a list of strings', () => {
     expect(() => parseCaseStudyMeta({ ...valid, tools: 'React' }, 'x.mdx')).toThrow(/"tools"/);
   });
+
+  it('rejects empty or whitespace-only text', () => {
+    expect(() => parseCaseStudyMeta({ ...valid, title: '  ' }, 'x.mdx')).toThrow(/"title"/);
+    expect(() => parseCaseStudyMeta({ ...valid, summary: '' }, 'x.mdx')).toThrow(/"summary"/);
+  });
+
+  it('rejects an empty tools list or blank tool names', () => {
+    expect(() => parseCaseStudyMeta({ ...valid, tools: [] }, 'x.mdx')).toThrow(/"tools"/);
+    expect(() => parseCaseStudyMeta({ ...valid, tools: ['React', ' '] }, 'x.mdx')).toThrow(
+      /"tools"/,
+    );
+  });
+});
+
+describe('assertNotTemplate', () => {
+  const template = {
+    ...valid,
+    title: 'Case study title',
+    summary: 'One or two sentences for the card on the home page.',
+    role: 'Your role on the project',
+    timeline: 'e.g. Jan – Mar 2026',
+  };
+
+  it('rejects a study that still carries the template sample text', () => {
+    expect(() => assertNotTemplate({ ...valid, role: template.role }, template, 'x.mdx')).toThrow(
+      /x\.mdx: "role" still has the template's sample text/,
+    );
+  });
+
+  it('accepts a study with its own text', () => {
+    expect(() => assertNotTemplate(valid, template, 'x.mdx')).not.toThrow();
+  });
 });
 
 describe('listCaseStudySlugs', () => {
@@ -57,8 +94,8 @@ describe('listCaseStudySlugs', () => {
     expect(() => listCaseStudySlugs(dirWith('My Study.mdx'))).toThrow(/lowercase-kebab-case/);
   });
 
-  it('finds no published-ready files in the seeded content', () => {
-    expect(listCaseStudySlugs()).toEqual([]);
+  it('reads the real content folder without errors', () => {
+    expect(() => listCaseStudySlugs()).not.toThrow();
   });
 });
 

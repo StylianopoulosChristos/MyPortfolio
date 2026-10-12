@@ -24,14 +24,15 @@ export function listCaseStudySlugs(dir: string = CASE_STUDY_DIR): string[] {
     });
 }
 
-const isString = (value: unknown) => typeof value === 'string';
+// Blank text would ship an empty heading or card, so it counts as missing.
+const isText = (value: unknown) => typeof value === 'string' && value.trim() !== '';
 
 const FIELDS: Record<keyof CaseStudyMeta, (value: unknown) => boolean> = {
-  title: isString,
-  summary: isString,
-  role: isString,
-  timeline: isString,
-  tools: (value) => Array.isArray(value) && value.every(isString),
+  title: isText,
+  summary: isText,
+  role: isText,
+  timeline: isText,
+  tools: (value) => Array.isArray(value) && value.length > 0 && value.every(isText),
   order: (value) => typeof value === 'number' && Number.isFinite(value),
   published: (value) => typeof value === 'boolean',
 };
@@ -44,11 +45,32 @@ export function parseCaseStudyMeta(raw: unknown, file: string): CaseStudyMeta {
   return record as unknown as CaseStudyMeta;
 }
 
+const TEMPLATE_TEXT_FIELDS = ['title', 'summary', 'role', 'timeline'] as const;
+
+// A copied template published without editing would ship its sample copy.
+export function assertNotTemplate(
+  meta: CaseStudyMeta,
+  template: CaseStudyMeta,
+  file: string,
+): void {
+  for (const field of TEMPLATE_TEXT_FIELDS) {
+    if (meta[field] === template[field]) {
+      throw new Error(`${file}: "${field}" still has the template's sample text`);
+    }
+  }
+}
+
 type CaseStudyModule = { meta?: unknown; default: ComponentType };
 
 async function loadCaseStudy(slug: string) {
+  const file = `content/work/${slug}.mdx`;
   const mod = (await import(`../../content/work/${slug}.mdx`)) as CaseStudyModule;
-  return { meta: parseCaseStudyMeta(mod.meta, `content/work/${slug}.mdx`), Content: mod.default };
+  const meta = parseCaseStudyMeta(mod.meta, file);
+  if (meta.published) {
+    const template = (await import('../../content/work/_template.mdx')) as CaseStudyModule;
+    assertNotTemplate(meta, parseCaseStudyMeta(template.meta, 'content/work/_template.mdx'), file);
+  }
+  return { meta, Content: mod.default };
 }
 
 export async function getPublishedCaseStudies(): Promise<

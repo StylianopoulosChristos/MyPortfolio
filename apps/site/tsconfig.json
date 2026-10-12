@@ -7,7 +7,7 @@
     "allowJs": false,
     "incremental": true,
     "allowImportingTsExtensions": true,
-    "types": ["node", "vitest/globals"],
+    "types": ["node", "vitest/globals", "mdx"],
     "plugins": [{ "name": "next" }],
     "paths": {
       "@content/*": ["./content/*"]
