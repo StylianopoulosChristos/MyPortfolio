@@ -8,3 +8,5 @@ pnpm-lock.yaml
 **/.next/
 **/out/
 **/next-env.d.ts
+# Prettier only parses MDX v1 and corrupts MDX v3 comments ({/* */}).
+*.mdx
