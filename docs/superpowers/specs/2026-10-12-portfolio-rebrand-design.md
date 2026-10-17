@@ -273,6 +273,7 @@ All content lives in `apps/site/content/`, separate from layout and components. 
    - rewrite `README.md` to describe the actual project (it currently references a deleted workflow and placeholder usernames)
 2. **Phases 1–4 (on the `rebrand` branch):** build the monorepo alongside the old files. The old site stays live the whole time.
 3. **Launch (end of Phase 4):** delete the old `index.html`, `css/` and `js/`, merge `rebrand` into `main`, and switch Pages to the Actions deploy.
+   - **Update 2026-10-17:** at Chris's request, launch happened right after Phase 1. The skeleton went live first, and content (agency role, LinkedIn, case studies) follows on the live site. Phases 2–5 continue unchanged; every push to `main` now deploys after CI passes.
 
 ---
 

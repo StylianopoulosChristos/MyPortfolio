@@ -9,16 +9,7 @@ const nextForSite = nextCoreWebVitals.map((config) => ({
 
 export default tseslint.config(
   {
-    ignores: [
-      '**/dist/**',
-      '**/.next/**',
-      '**/out/**',
-      '**/next-env.d.ts',
-      'index.html',
-      'css/**',
-      'js/**',
-      '.superpowers/**',
-    ],
+    ignores: ['**/dist/**', '**/.next/**', '**/out/**', '**/next-env.d.ts', '.superpowers/**'],
   },
   ...tseslint.configs.recommended,
   ...nextForSite,

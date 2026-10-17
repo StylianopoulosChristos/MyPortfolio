@@ -1,6 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": ["**/dist/**", "**/.next/**", "**/out/**", "css/**"],
+  "ignoreFiles": ["**/dist/**", "**/.next/**", "**/out/**"],
   "rules": {
     "color-no-hex": true,
     "color-named": "never",

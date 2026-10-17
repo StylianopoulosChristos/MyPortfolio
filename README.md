@@ -55,6 +55,12 @@ hand.
 
 ## Deploying
 
-The site builds for `BASE_PATH=/MyPortfolio` (the GitHub Pages project URL). CI checks every push
-to `main` and `rebrand`. The old single-page site (`index.html`, `css/`, `js/`) stays live until
-launch, when Pages switches to deploying `apps/site/out/`.
+Live at https://stylianopouloschristos.github.io/MyPortfolio/.
+
+Every push to `main` runs typecheck, lint, tests and the static build with
+`BASE_PATH=/MyPortfolio`; if all of them pass, GitHub Actions publishes `apps/site/out/` to
+GitHub Pages. A failing check never replaces the live site. Pushes to other branches and pull
+requests run the same checks without deploying.
+
+To move to a custom domain (or rename the repo to `stylianopouloschristos.github.io`), change
+`BASE_PATH` in `.github/workflows/ci.yml` to an empty string.
