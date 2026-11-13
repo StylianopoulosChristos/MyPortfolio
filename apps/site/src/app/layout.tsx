@@ -8,6 +8,7 @@ import { getPublishedCaseStudies } from '../lib/case-studies';
 import { themeScript } from '../theme/theme';
 import '@cs/tokens/tokens.css';
 import './globals.css';
+import '../motion/motion.css';
 
 export const metadata: Metadata = {
   title: {

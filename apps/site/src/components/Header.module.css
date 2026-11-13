@@ -35,14 +35,20 @@
   list-style: none;
 }
 
+/* The underline draws in from the left on hover. */
 .link {
+  padding-block-end: 2px;
+  background: linear-gradient(currentcolor, currentcolor) no-repeat 0 100% / 0 1px;
   color: var(--color-text-muted);
   font-size: var(--font-size-small);
   text-decoration: none;
-  transition: color var(--duration-fast) var(--easing-standard);
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    background-size var(--duration-base) var(--easing-emphasized);
 }
 
 .link:hover {
+  background-size: 100% 1px;
   color: var(--color-text-default);
 }
 

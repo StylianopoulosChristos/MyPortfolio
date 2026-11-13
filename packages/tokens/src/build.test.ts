@@ -35,6 +35,11 @@ describe('token build', () => {
     expect(css).toContain('color-scheme: light');
   });
 
+  it('provides entrance motion tokens', () => {
+    expect(base['duration-slower']).toBe('560ms');
+    expect(base['easing-emphasized']).toBe('cubic-bezier(0.05, 0.7, 0.1, 1)');
+  });
+
   it('emits base tokens verbatim', () => {
     expect(base['font-size-display']).toBe('clamp(2.5rem, 2rem + 2vw, 3.5rem)');
     expect(base['space-5']).toBe('24px');

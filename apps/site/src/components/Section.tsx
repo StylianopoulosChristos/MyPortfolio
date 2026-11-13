@@ -13,7 +13,7 @@ interface SectionProps {
 export function Section({ id, label, title, children }: SectionProps) {
   const headingId = `${id ?? label.toLowerCase().replace(/\W+/g, '-')}-heading`;
   return (
-    <section id={id} className={styles.section} aria-labelledby={headingId}>
+    <section id={id} className={styles.section} aria-labelledby={headingId} data-reveal>
       <Container>
         <p className={styles.label}>{label}</p>
         <h2 id={headingId} className={styles.title}>

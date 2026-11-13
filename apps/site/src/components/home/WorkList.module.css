@@ -14,11 +14,14 @@
   background: var(--color-surface-default);
   color: var(--color-text-default);
   text-decoration: none;
-  transition: border-color var(--duration-base) var(--easing-standard);
+  transition:
+    border-color var(--duration-base) var(--easing-standard),
+    transform var(--duration-base) var(--easing-emphasized);
 }
 
 .card:hover {
   border-color: var(--color-accent-default);
+  transform: translateY(calc(var(--space-1) * -1));
 }
 
 .summary {

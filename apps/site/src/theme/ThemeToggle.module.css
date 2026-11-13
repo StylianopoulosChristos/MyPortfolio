@@ -17,6 +17,19 @@
   border-color: var(--color-border-strong);
 }
 
+/* The glyph remounts on every theme change (see ThemeToggle.tsx) and spins in. */
+.glyph {
+  display: inline-block;
+  animation: swap var(--duration-slow) var(--easing-emphasized);
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+}
+
 /* data-theme is only set by the inline script, so this hides the toggle without JS. */
 :global(html:not([data-theme])) .toggle {
   display: none;

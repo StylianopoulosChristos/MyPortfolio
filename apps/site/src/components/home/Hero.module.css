@@ -1,5 +1,14 @@
 .hero {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
   padding-block: var(--space-9) var(--space-8);
+}
+
+@media (width >= 768px) {
+  .hero {
+    grid-template-columns: 1.4fr 1fr;
+  }
 }
 
 .pill {
@@ -54,6 +63,10 @@
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
+  gap: var(--space-2);
+  transition:
+    transform var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-base) var(--easing-standard);
 }
 
 .primary {
@@ -65,4 +78,29 @@
   border: 1px solid var(--color-border-strong);
   background: var(--color-surface-default);
   color: var(--color-text-default);
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-1px);
+}
+
+.primary:active,
+.secondary:active {
+  transform: scale(0.98);
+}
+
+/* The arrow nudges forward on hover. */
+.primary span,
+.secondary span {
+  transition: transform var(--duration-base) var(--easing-emphasized);
+}
+
+.primary:hover span,
+.secondary:hover span {
+  transform: translateX(var(--space-1));
+}
+
+.secondary:hover {
+  border-color: var(--color-accent-default);
 }

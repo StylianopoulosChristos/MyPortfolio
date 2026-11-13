@@ -1,0 +1,114 @@
+.panel {
+  /* One highlight sweep across the three rows, built from the motion tokens. */
+  --cycle: calc(var(--duration-slower) * 12);
+
+  margin: 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-default);
+}
+
+.caption {
+  margin-block-end: var(--space-5);
+  color: var(--color-text-muted);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+}
+
+.stage {
+  margin-block-end: var(--space-5);
+}
+
+.button {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  outline: 1px dashed var(--color-accent-default);
+  outline-offset: var(--space-1);
+  background: var(--color-accent-default);
+  color: var(--color-accent-fg);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  animation: measure var(--cycle) var(--easing-standard) infinite;
+  transition:
+    transform var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-base) var(--easing-standard);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.tokens {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-block-start: 1px solid var(--color-border-default);
+  border-inline-start: 2px solid transparent;
+  font-size: var(--font-size-label);
+  animation: highlight var(--cycle) var(--easing-standard) infinite;
+}
+
+.row:nth-child(2) {
+  animation-delay: calc(var(--cycle) / 3);
+}
+
+.row:nth-child(3) {
+  animation-delay: calc(var(--cycle) / 3 * 2);
+}
+
+.row dt {
+  color: var(--color-text-muted);
+}
+
+.row dd {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin: 0;
+  font-family: var(--font-family-mono);
+}
+
+.value {
+  color: var(--color-text-muted);
+  transition: color var(--duration-base) var(--easing-standard);
+}
+
+/* Each row lights up for a third of the cycle. */
+@keyframes highlight {
+  0%,
+  30% {
+    border-inline-start-color: var(--color-accent-default);
+    background: var(--color-surface-raised);
+  }
+
+  36%,
+  100% {
+    border-inline-start-color: transparent;
+    background: transparent;
+  }
+}
+
+/* The dashed "measuring" outline breathes while the rows cycle. */
+@keyframes measure {
+  0%,
+  100% {
+    outline-color: var(--color-accent-default);
+  }
+
+  50% {
+    outline-color: transparent;
+  }
+}

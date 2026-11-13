@@ -68,11 +68,16 @@
     "$type": "duration",
     "fast": { "$value": "120ms" },
     "base": { "$value": "200ms" },
-    "slow": { "$value": "320ms" }
+    "slow": { "$value": "320ms" },
+    "slower": { "$value": "560ms", "$description": "Entrances: page, hero and scroll reveals" }
   },
   "easing": {
     "$type": "cubicBezier",
-    "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)" }
+    "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)" },
+    "emphasized": {
+      "$value": "cubic-bezier(0.05, 0.7, 0.1, 1)",
+      "$description": "Fast start, long settle: for things arriving on screen"
+    }
   },
   "layout": {
     "$type": "dimension",

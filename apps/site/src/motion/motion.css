@@ -1,0 +1,35 @@
+/* Site-wide motion. Every timing comes from the motion tokens, and the
+   reduced-motion block in globals.css turns all of it off. */
+
+/* Scroll reveal. Content is only hidden when the inline theme script ran
+   (it sets data-theme) and the visitor allows motion, so it can never be
+   stuck invisible without JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-theme] [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(var(--space-5));
+  }
+}
+
+[data-reveal] {
+  transition:
+    opacity var(--duration-slower) var(--easing-emphasized),
+    transform var(--duration-slower) var(--easing-emphasized);
+}
+
+/* Page entrance, replayed on every navigation by app/template.tsx. */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-3));
+  }
+}
+
+.page-enter {
+  animation: enter var(--duration-slower) var(--easing-emphasized) both;
+}
+
+/* Staggered entrance for individual elements: set --enter-delay inline. */
+.enter {
+  animation: enter var(--duration-slower) var(--easing-emphasized) var(--enter-delay, 0s) both;
+}
