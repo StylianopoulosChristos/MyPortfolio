@@ -1,17 +1,31 @@
 import type { Education, Role } from './types';
 
-// Newest first. Add the agency role at the top once its details are confirmed.
+// Newest first.
 export const experience = [
+  {
+    company: 'Newsphone Hellas',
+    title: 'Senior Web Developer',
+    start: '2026-05',
+    end: 'present',
+    bullets: [
+      'Design responsive UI/UX mockups for widescreen, tablet and mobile',
+      'Manage a small team of WordPress developers',
+      'Meet with clients and run a thorough business analysis to define websites that fit their needs',
+      'Build websites with Divi 5 and Elementor',
+      'Write custom CSS and JavaScript to bridge the gap between the CMS and client requirements',
+      'Develop custom API solutions for client-specific needs',
+    ],
+    tags: ['UI/UX mockups', 'Divi 5', 'Elementor', 'JavaScript', 'Team leadership'],
+  },
   {
     company: 'Cosmote E-Value',
     title: 'Application Support Engineer',
     start: '2024-10',
-    // end: add the month you left, e.g. '2025-06'
+    end: '2026-05',
     bullets: [
-      'Supported and improved enterprise web applications, focusing on UI issues, rendering, and performance',
-      'Worked with HTML and CSS to debug layout, responsiveness, and cross-browser compatibility',
-      'Investigated application behavior using PHP and SQL, resolving frontend and data-related issues',
-      'Collaborated with external development teams to implement fixes and improve user experience',
+      'Supported and improved enterprise web applications, focusing on UI issues, rendering and performance',
+      'Debugged layout, responsiveness and cross-browser issues using HTML and CSS',
+      'Investigated application behavior with PHP and SQL and worked with external development teams to ship fixes',
     ],
     tags: ['HTML', 'CSS', 'PHP', 'SQL'],
   },
@@ -21,10 +35,8 @@ export const experience = [
     start: '2021-09',
     end: '2022-03',
     bullets: [
-      'Designed and maintained structured databases',
-      'Developed and optimized SQL queries and stored procedures',
-      'Automated data workflows to improve efficiency and consistency',
-      'Ensured data integrity and supported data-driven applications',
+      'Designed and maintained structured databases, ensuring data integrity',
+      'Developed and optimized SQL queries and stored procedures, automating data workflows',
     ],
     tags: ['SQL', 'Database design', 'Automation'],
   },
@@ -35,11 +47,22 @@ export const experience = [
     end: '2020-01',
     bullets: [
       'Automated data reconciliation processes, improving accuracy and efficiency by ~90%',
-      'Developed scripts and workflows for data transformation and analysis (Python, SQL)',
-      'Supported database-driven applications and backend logic for web systems',
+      'Developed Python and SQL scripts for data transformation and supported database-driven web systems',
       'Progressed from junior role to database analyst within the team',
     ],
     tags: ['Python', 'SQL', 'Data analysis', 'Automation'],
+  },
+  {
+    company: 'Self-Employed (Contract, Remote)',
+    title: 'Web Developer',
+    start: '2015-09',
+    end: '2017-02',
+    bullets: [
+      'Developed and maintained responsive web applications for clients using PHP, JavaScript, HTML and CSS',
+      'Led client calls to gather requirements and turn business needs into application features',
+      'Managed PostgreSQL databases, ensuring data integrity and optimized query performance',
+    ],
+    tags: ['PHP', 'JavaScript', 'PostgreSQL'],
   },
 ] satisfies Role[];
 
