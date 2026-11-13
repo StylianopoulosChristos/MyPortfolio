@@ -14,7 +14,14 @@ export const EMPTY_SLUG = '_';
 
 export function listCaseStudySlugs(dir: string = CASE_STUDY_DIR): string[] {
   return readdirSync(dir)
-    .filter((file) => file.endsWith('.mdx') && !file.startsWith('_'))
+    .filter((file) => {
+      if (file.startsWith('_')) return false;
+      // A study saved as .md or .MDX would otherwise vanish without a word.
+      if (/\.mdx?$/i.test(file) && !file.endsWith('.mdx')) {
+        throw new Error(`content/work/${file}: case studies must use the .mdx extension`);
+      }
+      return file.endsWith('.mdx');
+    })
     .map((file) => {
       const slug = file.slice(0, -'.mdx'.length);
       if (!SLUG.test(slug)) {

@@ -28,6 +28,10 @@ describe('static export', () => {
     }
   });
 
+  it('gives the 404 page its own title', () => {
+    expect(read('404.html')).toMatch(/<title>Page not found · Chris Stylianopoulos<\/title>/);
+  });
+
   it('shows the new positioning', () => {
     const home = read('index.html');
     expect(home).toContain('UI / Design Systems Engineer');

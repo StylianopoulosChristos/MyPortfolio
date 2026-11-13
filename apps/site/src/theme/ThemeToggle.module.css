@@ -17,10 +17,21 @@
   border-color: var(--color-border-strong);
 }
 
-/* The glyph remounts on every theme change (see ThemeToggle.tsx) and spins in. */
-.glyph {
+/* Show the sun in dark, the moon in light. A glyph spins in each time it is
+   shown, because the animation restarts when display changes. */
+.sun,
+.moon {
   display: inline-block;
   animation: swap var(--duration-slow) var(--easing-emphasized);
+}
+
+.moon,
+:global(:root[data-theme='light']) .sun {
+  display: none;
+}
+
+:global(:root[data-theme='light']) .moon {
+  display: inline-block;
 }
 
 @keyframes swap {

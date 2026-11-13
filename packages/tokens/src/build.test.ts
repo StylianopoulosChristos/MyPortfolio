@@ -35,6 +35,30 @@ describe('token build', () => {
     expect(css).toContain('color-scheme: light');
   });
 
+  it('keeps scales in the order they are authored, largest type first', () => {
+    const names = (prefix: string) => Object.keys(base).filter((key) => key.startsWith(prefix));
+    expect(names('font-size-')).toEqual([
+      'font-size-display',
+      'font-size-h1',
+      'font-size-h2',
+      'font-size-h3',
+      'font-size-body-lg',
+      'font-size-body',
+      'font-size-small',
+      'font-size-label',
+      'font-size-code',
+    ]);
+    expect(names('radius-')).toEqual([
+      'radius-sm',
+      'radius-md',
+      'radius-lg',
+      'radius-xl',
+      'radius-full',
+    ]);
+    expect(names('space-').slice(0, 3)).toEqual(['space-1', 'space-2', 'space-3']);
+    expect(names('space-').at(-1)).toBe('space-10');
+  });
+
   it('provides entrance motion tokens', () => {
     expect(base['duration-slower']).toBe('560ms');
     expect(base['easing-emphasized']).toBe('cubic-bezier(0.05, 0.7, 0.1, 1)');

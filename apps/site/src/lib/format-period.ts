@@ -5,7 +5,9 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 function formatMonth(value: YearMonth): string {
   const [year, month] = value.split('-');
-  return `${MONTHS[Number(month) - 1]} ${year}`;
+  const name = MONTHS[Number(month) - 1];
+  if (!name) throw new Error(`content/experience.ts: "${value}" is not a valid YYYY-MM month`);
+  return `${name} ${year}`;
 }
 
 export function formatPeriod(start: YearMonth, end?: YearMonth | 'present'): string {

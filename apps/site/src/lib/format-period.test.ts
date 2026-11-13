@@ -13,4 +13,9 @@ describe('formatPeriod', () => {
   it('shows only the start when the end is unknown', () => {
     expect(formatPeriod('2024-10')).toBe('Oct 2024');
   });
+
+  it('rejects a month that does not exist', () => {
+    expect(() => formatPeriod('2024-13')).toThrow(/2024-13/);
+    expect(() => formatPeriod('2024-10', '2025-00')).toThrow(/2025-00/);
+  });
 });

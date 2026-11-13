@@ -11,9 +11,7 @@ export const metadata: Metadata = { title: 'System' };
 const colorNames = Object.keys(themes.dark) as ColorToken[];
 const baseEntries = Object.entries(base);
 const fontSizes = baseEntries.filter(([name]) => name.startsWith('font-size-'));
-const spaces = baseEntries
-  .filter(([name]) => /^space-\d+$/.test(name))
-  .sort(([a], [b]) => Number(a.slice(6)) - Number(b.slice(6)));
+const spaces = baseEntries.filter(([name]) => name.startsWith('space-'));
 const radii = baseEntries.filter(([name]) => name.startsWith('radius-'));
 
 export default function System() {
@@ -46,6 +44,7 @@ export default function System() {
             <thead>
               <tr>
                 <th scope="col">Token</th>
+                <th scope="col">Current</th>
                 <th scope="col">Dark</th>
                 <th scope="col">Light</th>
               </tr>
@@ -56,6 +55,14 @@ export default function System() {
                   <th scope="row" className={styles.tokenName}>
                     {name}
                   </th>
+                  <td>
+                    {/* Reads the live CSS variable, so it changes with the theme toggle. */}
+                    <span
+                      className={styles.swatch}
+                      style={{ backgroundColor: `var(--${name})` }}
+                      aria-hidden="true"
+                    />
+                  </td>
                   {(['dark', 'light'] as const).map((theme) => (
                     <td key={theme}>
                       <span

@@ -90,6 +90,11 @@ describe('listCaseStudySlugs', () => {
     ]);
   });
 
+  it('rejects case studies saved with the wrong extension instead of skipping them', () => {
+    expect(() => listCaseStudySlugs(dirWith('study.MDX'))).toThrow(/study\.MDX.*\.mdx/);
+    expect(() => listCaseStudySlugs(dirWith('study.md'))).toThrow(/study\.md.*\.mdx/);
+  });
+
   it('rejects file names that are not URL-safe', () => {
     expect(() => listCaseStudySlugs(dirWith('My Study.mdx'))).toThrow(/lowercase-kebab-case/);
   });
